@@ -12,6 +12,13 @@ const envConfig = {
   dbtable: process.env.DB_MAINTABLE,
 };
 
+const dbConfig = {
+  host: envConfig.dbhost,
+  user: envConfig.dbuser,
+  password: envConfig.dbpassword,
+  database: envConfig.dbname,
+};
+
 const options = { skip: false };
 const args = process.argv.slice(2);
 
@@ -24,4 +31,4 @@ if (
   options.skip = true;
 }
 
-export { envConfig, options };
+export { envConfig, dbConfig, options };
