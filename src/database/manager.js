@@ -2,7 +2,7 @@ import pg from "pg";
 const { Pool } = pg;
 
 import recreateDb from "./utils/recreateDb.js";
-import { dbConfig, options } from "../../utils/envUtils.js";
+import { dbConfig, options } from "../utils/envUtils.js";
 
 class Manager {
   static async query(queryStr, params) {

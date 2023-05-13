@@ -4,6 +4,9 @@ import cors from "cors";
 
 import { envConfig } from "./utils/envUtils.js";
 
+import routeValidators from "./middleware/validators/routes.js";
+import usersRoutes from "./routes/users.js";
+
 const placeholderCB = (req, res) => {
   console.log(req.method, req.path);
   res.status(204).end();
@@ -16,7 +19,7 @@ const main = () => {
   app.use(express.json());
 
   app.get("/usuarios", placeholderCB);
-  app.post("/usuarios", placeholderCB);
+  app.post("/usuarios", routeValidators.createUser, usersRoutes.createUser);
   app.post("/login", placeholderCB);
   app.all("*", (req, res) => {
     res.status(404).json({

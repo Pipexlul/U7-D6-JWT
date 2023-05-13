@@ -5,8 +5,8 @@ import { dbConfig } from "../../utils/envUtils.js";
 
 const recreateDb = async (pool) => {
   try {
-    await pool.query(`DROP DATABASE IF EXISTS ${dbConfig.dbname};`);
-    await pool.query(`CREATE DATABASE ${dbConfig.dbname};`);
+    await pool.query(`DROP DATABASE IF EXISTS ${dbConfig.database};`);
+    await pool.query(`CREATE DATABASE ${dbConfig.database};`);
 
     const dbPool = new Pool(dbConfig);
     await dbPool.query(
@@ -14,6 +14,8 @@ const recreateDb = async (pool) => {
     );
 
     console.log("Database recreated");
+
+    return dbPool;
   } catch (err) {
     console.error("Could not recreate database");
     console.error(err);
