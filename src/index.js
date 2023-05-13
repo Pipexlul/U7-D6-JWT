@@ -2,6 +2,8 @@ import express from "express";
 
 import cors from "cors";
 
+import callLogger from "./middleware/logger.js";
+
 import { envConfig } from "./utils/envUtils.js";
 
 import routeValidators from "./middleware/validators/routes.js";
@@ -17,6 +19,7 @@ const main = () => {
 
   app.use(cors());
   app.use(express.json());
+  app.use(callLogger());
 
   app.get("/usuarios", placeholderCB);
   app.post("/usuarios", routeValidators.createUser, usersRoutes.createUser);
