@@ -5,7 +5,7 @@ import recreateDb from "./utils/recreateDb.js";
 import { dbConfig, options } from "../../utils/envUtils.js";
 
 class Manager {
-  async query(queryStr, params) {
+  static async query(queryStr, params) {
     await Manager.#initConnection();
 
     return await Manager.#_dbPool.query(queryStr, params);
