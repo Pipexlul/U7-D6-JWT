@@ -17,7 +17,7 @@ const main = () => {
   app.use(express.json());
   app.use(callLogger());
 
-  app.get("/test/users", usersRoutes.test_getUsers);
+  // app.get("/test/users", usersRoutes.test_getUsers);
 
   app.get("/usuarios", routeValidators.getUserSelf, usersRoutes.getUserSelf);
   app.post("/usuarios", routeValidators.createUser, usersRoutes.createUser);
