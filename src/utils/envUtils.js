@@ -12,4 +12,16 @@ const envConfig = {
   dbtable: process.env.DB_MAINTABLE,
 };
 
-export { envConfig };
+const options = { skip: false };
+const args = process.argv.slice(2);
+
+if (
+  args.some(
+    (arg) =>
+      arg.toLowerCase() === "-s" || arg.toLowerCase() === "--skip-recreate"
+  )
+) {
+  options.skip = true;
+}
+
+export { envConfig, options };
