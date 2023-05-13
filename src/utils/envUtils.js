@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const numPort = parseInt(process.env.TEST_PORT);
+const numSaltRounds = parseInt(process.env.SALT_ROUNDS);
 
 const envConfig = {
   port: isNaN(numPort) ? 3000 : numPort,
@@ -10,6 +11,7 @@ const envConfig = {
   dbpassword: process.env.DB_PASSWORD,
   dbname: process.env.DB_DATABASENAME,
   dbtable: process.env.DB_MAINTABLE,
+  saltRounds: isNaN(numSaltRounds) ? 10 : numSaltRounds,
 };
 
 const dbConfig = {
