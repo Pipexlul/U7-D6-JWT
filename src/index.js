@@ -18,6 +18,11 @@ const main = () => {
   app.get("/usuarios", placeholderCB);
   app.post("/usuarios", placeholderCB);
   app.post("/login", placeholderCB);
+  app.all("*", (req, res) => {
+    res.status(404).json({
+      error: "¡Esta ruta no existe!",
+    });
+  });
 
   app.listen(envConfig.port, () => {
     console.log(`Server running on port ${envConfig.port}`);
