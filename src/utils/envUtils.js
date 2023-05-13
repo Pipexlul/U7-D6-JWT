@@ -1,8 +1,10 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
+const numPort = parseInt(process.env.PORT);
+
 const envConfig = {
-  port: process.env.TEST_PORT,
+  port: isNaN(numPort) ? 3000 : numPort,
   dbhost: process.env.DB_HOST,
   dbuser: process.env.DB_USERNAME,
   dbpassword: process.env.DB_PASSWORD,
