@@ -10,11 +10,6 @@ import routeValidators from "./middleware/validators/routes.js";
 import usersRoutes from "./routes/users.js";
 import loginRoutes from "./routes/login.js";
 
-const placeholderCB = (req, res) => {
-  console.log(req.method, req.path);
-  res.status(204).end();
-};
-
 const main = () => {
   const app = express();
 
@@ -24,7 +19,7 @@ const main = () => {
 
   app.get("/test/users", usersRoutes.test_getUsers);
 
-  app.get("/usuarios", placeholderCB);
+  app.get("/usuarios", routeValidators.getUserSelf, usersRoutes.getUserSelf);
   app.post("/usuarios", routeValidators.createUser, usersRoutes.createUser);
   app.post("/login", routeValidators.loginUser, loginRoutes.loginUser);
   app.all("*", (req, res) => {

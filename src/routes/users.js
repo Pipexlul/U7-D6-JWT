@@ -53,6 +53,33 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUserSelf = async (req, res) => {
+  try {
+    const { email } = req.tokenPayload;
+
+    const getUserByEmailQuery = pgFormat(
+      `SELECT * FROM ${envConfig.dbtable} WHERE email = %L;`,
+      email
+    );
+
+    const result = await query(getUserByEmailQuery);
+    if (result.rows.length === 0) {
+      res.status(500).json({
+        error: "No pudimos encontrar su perfil!",
+      });
+
+      return;
+    }
+
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: "Error al obtener usuario.",
+    });
+  }
+};
+
 const test_getUsers = async (req, res) => {
   try {
     const result = await query(`SELECT * FROM ${envConfig.dbtable};`);
@@ -67,5 +94,6 @@ const test_getUsers = async (req, res) => {
 
 export default {
   createUser: asyncLoader(createUser),
+  getUserSelf: asyncLoader(getUserSelf),
   test_getUsers: asyncLoader(test_getUsers),
 };
