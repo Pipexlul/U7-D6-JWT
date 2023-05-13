@@ -7,7 +7,8 @@
     "start": "node ./src/index.js",
     "start:skip": "node ./src/index.js -- --skip-recreate",
     "watch": "npx nodemon ./src/index.js",
-    "watch:skip": "npx nodemon ./src/index.js -- --skip-recreate"
+    "watch:skip": "npx nodemon ./src/index.js -- --skip-recreate",
+    "genSecret": "node ./scripts/genJWTSecret.js"
   },
   "keywords": [],
   "author": {

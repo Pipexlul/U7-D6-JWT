@@ -12,6 +12,7 @@ const envConfig = {
   dbname: process.env.DB_DATABASENAME,
   dbtable: process.env.DB_MAINTABLE,
   saltRounds: isNaN(numSaltRounds) ? 10 : numSaltRounds,
+  jwtSecret: process.env.JWT_SECRET,
 };
 
 const dbConfig = {
